@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbfwjpcoejuuf"]
+
+[ext_resource type="Script" path="res://nodes/cursor.gd" id="2_8fb1g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s5e0o"]
+radius = 0.0215589
+
+[node name="cursor" type="CharacterBody3D" groups=["cursor"]]
+script = ExtResource("2_8fb1g")
+
+[node name="coll" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_s5e0o")

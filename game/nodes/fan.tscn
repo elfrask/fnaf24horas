@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk4c3wgp4631q"]
+
+[ext_resource type="Script" path="res://nodes/fan.gd" id="1_62sih"]
+[ext_resource type="ArrayMesh" uid="uid://b2xbr7jqj5r0o" path="res://assets/models/pizzeria/decorations/fan/ENV_MOD_Desk_Fan_Fanblade.obj" id="1_bqjwa"]
+[ext_resource type="ArrayMesh" uid="uid://m0qe0fneat1n" path="res://assets/models/pizzeria/decorations/fan/ENV_MOD_Desk_Fan_Base_02.obj" id="2_cquxv"]
+
+[sub_resource type="Animation" id="Animation_ipans"]
+resource_name = "play"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fanblade:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-6.28319, 0, 0), Vector3(-4.71239, 0, 0), Vector3(-3.14159, 0, 0), Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b7wtm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fanblade:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwc0r"]
+_data = {
+"RESET": SubResource("Animation_b7wtm"),
+"play": SubResource("Animation_ipans")
+}
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_62sih")
+
+[node name="fanblade" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9208, 0, 0, 0, 0.9208, 3.48635, 28.1079, -0.0064888)
+mesh = ExtResource("1_bqjwa")
+
+[node name="base" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_cquxv")
+
+[node name="play" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xwc0r")
+}

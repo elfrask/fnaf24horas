@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7f8p0grbp6k"]
+
+[ext_resource type="Script" path="res://nodes/CAM_button.gd" id="1_6byqq"]
+[ext_resource type="FontFile" uid="uid://xqp722nwppc" path="res://assets/font/Silver.ttf" id="1_ecyia"]
+[ext_resource type="AudioStream" uid="uid://behuv0nbfs4uo" path="res://assets/sounds/camara.mp3" id="3_8dkan"]
+
+[sub_resource type="Theme" id="Theme_nx71x"]
+/colors/ColorRect = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1036.0
+offset_bottom = -571.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6byqq")
+Property = "CAM1"
+NumberCAM = "1"
+
+[node name="borde" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 76.0
+theme = SubResource("Theme_nx71x")
+
+[node name="content" type="ColorRect" parent="borde"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 111.0
+offset_bottom = 69.0
+theme = SubResource("Theme_nx71x")
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="c" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 74.0
+offset_bottom = 64.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_ecyia")
+theme_override_font_sizes/font_size = 56
+text = "CAM"
+
+[node name="c2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 35.0
+offset_right = 74.0
+offset_bottom = 98.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_ecyia")
+theme_override_font_sizes/font_size = 46
+text = "1"
+
+[node name="boton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 77.0
+
+[node name="camara" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8dkan")
+
+[connection signal="pressed" from="boton" to="." method="_on_boton_pressed"]

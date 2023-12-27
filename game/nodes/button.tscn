@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://o72ut2hkl3h2"]
+
+[ext_resource type="Script" path="res://nodes/button.gd" id="1_jevcv"]
+[ext_resource type="AudioStream" uid="uid://bav3so05j6n27" path="res://assets/sounds/light.wav" id="2_rtkh2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2md5"]
+albedo_color = Color(0.16446, 0.16446, 0.16446, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n8wou"]
+material = SubResource("StandardMaterial3D_o2md5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uytn"]
+albedo_color = Color(0.803922, 0.803922, 0.803922, 1)
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_v2y8w"]
+material = SubResource("StandardMaterial3D_6uytn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pln7i"]
+size = Vector3(1, 0.917725, 0.309692)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abg5y"]
+albedo_color = Color(0.713726, 0.054902, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kahgd"]
+material = SubResource("StandardMaterial3D_abg5y")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_euh8d"]
+size = Vector3(1.79578, 2.75446, 0.411869)
+
+[node name="button" type="Node3D"]
+script = ExtResource("1_jevcv")
+
+[node name="base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.78534, 0, 0, 0, 2.77213, 0, 0, 0, 0.23481, 0, 0, 0)
+mesh = SubResource("BoxMesh_n8wou")
+
+[node name="luz" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.319598, 0, -0.568633, 0.148903)
+mesh = SubResource("BoxMesh_v2y8w")
+
+[node name="luz_luz" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.568633, 0.403603)
+visible = false
+omni_range = 0.833015
+
+[node name="Luz_Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22679, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Luz_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.647095, 0.157339)
+shape = SubResource("BoxShape3D_pln7i")
+
+[node name="puerta" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.319598, 0, 0.637484, 0.148903)
+mesh = SubResource("BoxMesh_kahgd")
+
+[node name="puerta_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0206189, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="puerta_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.647095, 0.157339)
+shape = SubResource("BoxShape3D_pln7i")
+
+[node name="luz_door" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.627477, 0.403603)
+visible = false
+omni_range = 0.833015
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00189209, 0.0154724, 0.067812)
+shape = SubResource("BoxShape3D_euh8d")
+
+[node name="delay" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="luz2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rtkh2")
+
+[connection signal="body_entered" from="Luz_Area" to="." method="_on_luz_area_body_entered"]
+[connection signal="body_entered" from="puerta_area" to="." method="_on_puerta_area_body_entered"]
+[connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]

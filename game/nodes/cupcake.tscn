@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dde4hjn1csyqs"]
+
+[ext_resource type="ArrayMesh" uid="uid://cpajvbksabpmr" path="res://assets/models/pizzeria/decorations/cupcake/Toy_Cupcake.obj" id="1_vtbr5"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ToyCupcake" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+mesh = ExtResource("1_vtbr5")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmemqmlm8okjl"]
+
+[ext_resource type="PackedScene" uid="uid://dt65tk6ka5yk5" path="res://nodes/ia.tscn" id="1_ihjqt"]
+[ext_resource type="ArrayMesh" uid="uid://bynncts33nc48" path="res://assets/models/Freddy/Freddy.obj" id="2_bmd5m"]
+
+[node name="IA" instance=ExtResource("1_ihjqt")]
+
+[node name="Freddy" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.0492063, 2.1529, 2.12426)
+mesh = ExtResource("2_bmd5m")

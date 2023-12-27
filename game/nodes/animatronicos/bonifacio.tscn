@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfnma7rpot8wg"]
+
+[ext_resource type="PackedScene" uid="uid://dt65tk6ka5yk5" path="res://nodes/ia.tscn" id="1_jlgk7"]
+[ext_resource type="ArrayMesh" uid="uid://c5pi26gaxnb8m" path="res://assets/models/Bonnie/Bonnie.obj" id="2_8ykcg"]
+
+[node name="IA" instance=ExtResource("1_jlgk7")]
+PointInit = "BONNIE"
+IAModel = 1
+
+[node name="Bonnie" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.0305026, 2.2252, 2.27668)
+mesh = ExtResource("2_8ykcg")

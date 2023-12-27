@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://i2431oei7n"]
+
+[ext_resource type="Script" path="res://nodes/doors.gd" id="1_b08k5"]
+[ext_resource type="AudioStream" uid="uid://b5r21v1ywfmgf" path="res://assets/sounds/door.mp3" id="2_0bha6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v34yl"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pcr47"]
+material = SubResource("StandardMaterial3D_v34yl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3g3qt"]
+albedo_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbv36"]
+albedo_color = Color(0.545098, 0.564706, 0.0470588, 1)
+
+[sub_resource type="Animation" id="Animation_1g0q4"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("puerta:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5.23628, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xfmb8"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("puerta:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 5.23628, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iow28"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("puerta:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 5.23628, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cx2ck"]
+_data = {
+"RESET": SubResource("Animation_1g0q4"),
+"close": SubResource("Animation_xfmb8"),
+"open": SubResource("Animation_iow28")
+}
+
+[node name="doors" type="Area3D"]
+script = ExtResource("1_b08k5")
+
+[node name="basebaja" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.731653, 0, 0, 0, 0.23973, 0, 0, 0, 4.28197, 0, 0, 0)
+mesh = SubResource("BoxMesh_pcr47")
+
+[node name="basesuperior" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.731653, 0, 0, 0, 0.23973, 0, 0, 0, 4.28197, 0, 5.28302, 0)
+mesh = SubResource("BoxMesh_pcr47")
+
+[node name="puerta" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.23628, 0)
+
+[node name="medio" type="MeshInstance3D" parent="puerta"]
+transform = Transform3D(0.378499, 0, 0, 0, 4.25737, 0, 0, 0, 4.17213, 0, 2.7155, 0)
+material_override = SubResource("StandardMaterial3D_3g3qt")
+mesh = SubResource("BoxMesh_pcr47")
+skeleton = NodePath("../..")
+
+[node name="baja" type="MeshInstance3D" parent="puerta"]
+transform = Transform3D(0.357693, 0, 0, 0, 0.812908, 0, 0, 0, 4.10414, 0, 0.411672, 0)
+material_override = SubResource("StandardMaterial3D_pbv36")
+mesh = SubResource("BoxMesh_pcr47")
+skeleton = NodePath("../..")
+
+[node name="alta" type="MeshInstance3D" parent="puerta"]
+transform = Transform3D(0.357693, 0, 0, 0, 0.812908, 0, 0, 0, 4.10414, 0, 4.8995, 0)
+material_override = SubResource("StandardMaterial3D_pbv36")
+mesh = SubResource("BoxMesh_pcr47")
+skeleton = NodePath("../..")
+
+[node name="ani" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cx2ck")
+}
+
+[node name="doors" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0bha6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

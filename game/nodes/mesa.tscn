@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl35cwdal4cko"]
+
+[ext_resource type="PackedScene" uid="uid://cudtg5doflb0c" path="res://nodes/silla.tscn" id="1_lkkem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd756"]
+albedo_color = Color(0.686275, 0, 0.0235294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xl7st"]
+material = SubResource("StandardMaterial3D_dd756")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p61b"]
+albedo_color = Color(0.360784, 0.109804, 0.0156863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3datk"]
+material = SubResource("StandardMaterial3D_2p61b")
+
+[node name="MESA" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0832524, 2.81077, -0.186905)
+
+[node name="tablon" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.93819, 0, 0, 0, 0.235358, 0, 0, 0, 5.55467, 0, 0, -0.0373392)
+mesh = SubResource("BoxMesh_xl7st")
+
+[node name="patas" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.359258, 0, 0, 0, 2.1323, 0, 0, 0, 0.394889, 4.39125, -1.00225, 2.13541)
+mesh = SubResource("BoxMesh_3datk")
+
+[node name="patas2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.359258, 0, 0, 0, 2.1323, 0, 0, 0, 0.394889, 4.39125, -1.00225, -2.13058)
+mesh = SubResource("BoxMesh_3datk")
+
+[node name="patas3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.359258, 0, 0, 0, 2.1323, 0, 0, 0, 0.394889, -4.40058, -1.00225, 2.13541)
+mesh = SubResource("BoxMesh_3datk")
+
+[node name="patas4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.359258, 0, 0, 0, 2.1323, 0, 0, 0, 0.394889, -4.40058, -1.00225, -2.13058)
+mesh = SubResource("BoxMesh_3datk")
+
+[node name="sillas" type="Node3D" parent="."]
+
+[node name="silla" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(0.18282, 0, 0, 0, 1.31297, 0, 0, 0, 0.179773, -3.58012, -1.50164, -3.82151)
+
+[node name="silla2" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(0.18282, 0, 0, 0, 1.31297, 0, 0, 0, 0.179773, -1.71209, -1.50164, -3.82151)
+
+[node name="silla3" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(0.18282, 0, 0, 0, 1.31297, 0, 0, 0, 0.179773, 0.0822043, -1.50164, -3.82151)
+
+[node name="silla4" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(0.18282, 0, 0, 0, 1.31297, 0, 0, 0, 0.179773, 1.90108, -1.50164, -3.82151)
+
+[node name="silla5" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(0.18282, 0, 0, 0, 1.31297, 0, 0, 0, 0.179773, 3.64621, -1.50164, -3.82151)
+
+[node name="silla6" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-0.18282, 0, 1.57163e-08, 0, 1.31297, 0, -1.59826e-08, 0, -0.179773, 3.54298, -1.50164, 3.84725)
+
+[node name="silla7" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-0.18282, 0, 1.57163e-08, 0, 1.31297, 0, -1.59826e-08, 0, -0.179773, 1.67495, -1.50164, 3.84725)
+
+[node name="silla8" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-0.18282, 0, 1.57163e-08, 0, 1.31297, 0, -1.59826e-08, 0, -0.179773, -0.119346, -1.50164, 3.84725)
+
+[node name="silla11" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-7.99132e-09, 0, -0.179773, 0, 1.31297, 0, 0.18282, 0, -7.85813e-09, 6.00092, -1.50164, -1.68311)
+
+[node name="silla12" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-7.99132e-09, 0, -0.179773, 0, 1.31297, 0, 0.18282, 0, -7.85813e-09, 6.00092, -1.50164, 0.184927)
+
+[node name="silla13" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-7.99132e-09, 0, -0.179773, 0, 1.31297, 0, 0.18282, 0, -7.85813e-09, 6.00092, -1.50164, 1.97922)
+
+[node name="silla14" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(2.39739e-08, 0, 0.179773, 0, 1.31297, 0, -0.18282, 0, 2.35744e-08, -6.0184, -1.50164, 1.78259)
+
+[node name="silla15" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(2.39739e-08, 0, 0.179773, 0, 1.31297, 0, -0.18282, 0, 2.35744e-08, -6.0184, -1.50164, -0.0854473)
+
+[node name="silla16" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(2.39739e-08, 0, 0.179773, 0, 1.31297, 0, -0.18282, 0, 2.35744e-08, -6.0184, -1.50164, -1.87974)
+
+[node name="silla9" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-0.18282, 0, 1.57163e-08, 0, 1.31297, 0, -1.59826e-08, 0, -0.179773, -1.93822, -1.50164, 3.84725)
+
+[node name="silla10" parent="sillas" instance=ExtResource("1_lkkem")]
+transform = Transform3D(-0.18282, 0, 1.57163e-08, 0, 1.31297, 0, -1.59826e-08, 0, -0.179773, -3.68336, -1.50164, 3.84725)

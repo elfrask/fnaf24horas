@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://co0wfdjy4qn84"]
+
+[ext_resource type="Script" path="res://nodes/PIZZERIA.gd" id="1_fx246"]
+[ext_resource type="PackedScene" uid="uid://nloao47ros27" path="res://assets/models/pizzeria/pizzeria.gltf" id="2_p0wha"]
+[ext_resource type="PackedScene" uid="uid://bmoc1djgax2wb" path="res://nodes/player.tscn" id="3_wp8a7"]
+[ext_resource type="PackedScene" uid="uid://qvqt4cw3bp0w" path="res://nodes/oficina.tscn" id="4_jv218"]
+[ext_resource type="PackedScene" uid="uid://o72ut2hkl3h2" path="res://nodes/button.tscn" id="5_56upc"]
+
+[sub_resource type="Environment" id="Environment_ri7r4"]
+background_mode = 1
+ambient_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwju8"]
+albedo_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2qq8w"]
+material = SubResource("StandardMaterial3D_fwju8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00fip"]
+albedo_color = Color(0.164706, 0.164706, 0.164706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rai8l"]
+material = SubResource("StandardMaterial3D_00fip")
+
+[node name="game" type="Node3D"]
+script = ExtResource("1_fx246")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0087265, 0.999962, 0, -0.999962, 0.0087265, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ri7r4")
+
+[node name="pizzeria" parent="." instance=ExtResource("2_p0wha")]
+
+[node name="oficina" type="Node3D" parent="pizzeria"]
+
+[node name="player" parent="pizzeria/oficina" instance=ExtResource("3_wp8a7")]
+transform = Transform3D(-4.33361e-08, -0.130751, 0.991415, -5.71531e-09, 0.991415, 0.130751, -1, 4.44089e-16, -4.37114e-08, 22.3356, 5.5465, 19)
+range_view = 35.0
+speed = 0.0487825
+
+[node name="pared" type="MeshInstance3D" parent="pizzeria/oficina"]
+transform = Transform3D(0.923813, 0, 0, 0, 6.98047, 0, 0, 0, 13.4061, 25.8078, 3.8291, 19)
+mesh = SubResource("BoxMesh_2qq8w")
+skeleton = NodePath("../..")
+
+[node name="techo" type="MeshInstance3D" parent="pizzeria/oficina"]
+transform = Transform3D(47.6136, 0, 0, 0, 0.544927, 0, 0, 0, 52.3977, 2.41879, 7.64438, 8.8292)
+visible = false
+mesh = SubResource("BoxMesh_rai8l")
+skeleton = NodePath("../..")
+
+[node name="Bombilla" type="OmniLight3D" parent="pizzeria/oficina"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8925, 6.77436, 19.4414)
+omni_range = 9.13562
+
+[node name="Node3D" parent="pizzeria/oficina" instance=ExtResource("4_jv218")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.42408, 19.3285)
+
+[node name="gameplay" type="Node3D" parent="pizzeria/oficina"]
+
+[node name="buttonR" parent="pizzeria/oficina/gameplay" instance=ExtResource("5_56upc")]
+transform = Transform3D(0.597184, 0, 0, 0, 0.597184, 0, 0, 0, 0.780128, 13.0361, 4.80337, 13.107)
+
+[node name="buttonL" parent="pizzeria/oficina/gameplay" instance=ExtResource("5_56upc")]
+transform = Transform3D(-0.597184, 0, -6.8201e-08, 0, 0.597184, 0, 5.22075e-08, 0, -0.780128, 13.0361, 4.80337, 25.5119)

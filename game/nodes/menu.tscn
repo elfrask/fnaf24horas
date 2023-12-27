@@ -1,0 +1,373 @@
+[gd_scene load_steps=21 format=3 uid="uid://do6cpijn3pa6n"]
+
+[ext_resource type="PackedScene" uid="uid://dr8ulpsl14fcy" path="res://assets/models/pizzeria/decorations/retro_tv.glb" id="1_6rhje"]
+[ext_resource type="Script" path="res://nodes/menu.gd" id="1_xdm7w"]
+[ext_resource type="PackedScene" uid="uid://dk4c3wgp4631q" path="res://nodes/fan.tscn" id="2_3aqj6"]
+[ext_resource type="PackedScene" uid="uid://dde4hjn1csyqs" path="res://nodes/cupcake.tscn" id="3_sjtin"]
+[ext_resource type="PackedScene" uid="uid://c4gessw4rbg2l" path="res://assets/models/pizzeria/decorations/dollfreddy/dollfreddy.glb" id="4_2638c"]
+[ext_resource type="FontFile" uid="uid://xqp722nwppc" path="res://assets/font/Silver.ttf" id="6_7ekua"]
+[ext_resource type="Shader" path="res://nodes/camaras.gdshader" id="6_v2qy2"]
+[ext_resource type="Texture2D" uid="uid://d1flfiikei63j" path="res://assets/GUI/test.jpg" id="7_lbmvr"]
+[ext_resource type="Texture2D" uid="uid://bg6gmwdrc63lv" path="res://assets/textures/chamba.png" id="7_u3qro"]
+[ext_resource type="AudioStream" uid="uid://8qso5od43dbf" path="res://assets/sounds/menu.mp3" id="8_oy8tp"]
+
+[sub_resource type="Environment" id="Environment_wdbio"]
+background_mode = 1
+ambient_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4oky"]
+albedo_color = Color(0.164706, 0.164706, 0.164706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b1htr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_in3cs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fhjda"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yycnb"]
+size = Vector3(1.34985, 1.37793, 1.31055)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_15bc7"]
+shader = ExtResource("6_v2qy2")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="Animation" id="Animation_1ksiy"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/chamba:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/chamba:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/chamba/ColorRect/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/shader:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 648)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/shader:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6fkdq"]
+resource_name = "goit"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/chamba:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/chamba:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/chamba/ColorRect/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6, 6.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_game"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("menu")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wa442"]
+_data = {
+"RESET": SubResource("Animation_1ksiy"),
+"goit": SubResource("Animation_6fkdq")
+}
+
+[node name="menu" type="Node3D"]
+script = ExtResource("1_xdm7w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wdbio")
+
+[node name="mesa" type="Node3D" parent="WorldEnvironment"]
+
+[node name="mesa" type="MeshInstance3D" parent="WorldEnvironment/mesa"]
+transform = Transform3D(6.83618, 0, 0, 0, 0.151497, 0, 0, 0, 8.02968, -1.2923, 2.46428, 0)
+material_override = SubResource("StandardMaterial3D_k4oky")
+mesh = SubResource("BoxMesh_b1htr")
+skeleton = NodePath("../..")
+
+[node name="pata" type="MeshInstance3D" parent="WorldEnvironment/mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, 1.30487, 1.02799, 3.53506)
+material_override = SubResource("StandardMaterial3D_k4oky")
+mesh = SubResource("BoxMesh_in3cs")
+skeleton = NodePath("../mesa")
+
+[node name="pata2" type="MeshInstance3D" parent="WorldEnvironment/mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, 1.30487, 1.02799, -3.68118)
+material_override = SubResource("StandardMaterial3D_k4oky")
+mesh = SubResource("BoxMesh_in3cs")
+skeleton = NodePath("../mesa")
+
+[node name="pata3" type="MeshInstance3D" parent="WorldEnvironment/mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, -1.43249, 1.02799, 3.53506)
+material_override = SubResource("StandardMaterial3D_k4oky")
+mesh = SubResource("BoxMesh_in3cs")
+skeleton = NodePath("../mesa")
+
+[node name="pata4" type="MeshInstance3D" parent="WorldEnvironment/mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, -1.43249, 1.02799, -3.68118)
+material_override = SubResource("StandardMaterial3D_k4oky")
+mesh = SubResource("BoxMesh_in3cs")
+skeleton = NodePath("../mesa")
+
+[node name="contenido" type="Node3D" parent="WorldEnvironment/mesa"]
+
+[node name="Sketchfab_Scene" parent="WorldEnvironment/mesa/contenido" instance=ExtResource("1_6rhje")]
+transform = Transform3D(0.59007, 0, 0.807352, 0, 1, 0, -0.807352, 0, 0.59007, -0.0774384, 3.31588, -2.05381)
+
+[node name="fan" parent="WorldEnvironment/mesa/contenido" instance=ExtResource("2_3aqj6")]
+transform = Transform3D(0.0465773, 0, 0.0181813, 0, 0.05, 0, -0.0181813, 0, 0.0465773, 0.090837, 2.53939, 1.99514)
+
+[node name="cupcake" parent="WorldEnvironment/mesa/contenido" instance=ExtResource("3_sjtin")]
+transform = Transform3D(0.0854611, 0, 0.380521, 0, 0.39, 0, -0.380521, 0, 0.0854611, -0.0220337, 4.07372, -2.00643)
+
+[node name="Sketchfab_Scene2" parent="WorldEnvironment/mesa/contenido" instance=ExtResource("4_2638c")]
+transform = Transform3D(0.0145471, 0, 0.184427, 0, 0.185, 0, -0.184427, 0, 0.0145471, -0.34066, 3.15832, 0.0375053)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment/mesa/contenido/Sketchfab_Scene2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/mesa/contenido/Sketchfab_Scene2/StaticBody3D"]
+transform = Transform3D(1, 0, 3.72529e-08, 0, 1, 0, -3.72529e-08, 0, 1, 0.0881859, 0.627846, 1.11801)
+shape = SubResource("BoxShape3D_fhjda")
+
+[node name="Area3D" type="Area3D" parent="WorldEnvironment/mesa/contenido/Sketchfab_Scene2/StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/mesa/contenido/Sketchfab_Scene2/StaticBody3D/Area3D"]
+transform = Transform3D(1, 0, 4.17233e-07, 0, 1, 0, -4.17233e-07, 0, 1, 0.152462, 0.635691, 1.9329)
+shape = SubResource("BoxShape3D_yycnb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/mesa/contenido"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07941, 3.48948, 0)
+omni_range = 1.96399
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-2.72229e-08, -0.782391, 0.622788, -3.41994e-08, 0.622788, 0.782391, -1, -5.32907e-15, -4.37114e-08, 2.15875, 4.69884, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="shader" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_15bc7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_lbmvr")
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 301.0
+offset_top = 310.0
+offset_right = 341.0
+offset_bottom = 350.0
+
+[node name="Label" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 123.0
+offset_right = 749.0
+offset_bottom = 191.0
+theme_override_fonts/font = ExtResource("6_7ekua")
+theme_override_font_sizes/font_size = 61
+text = "Ir a chambear"
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = -254.0
+offset_top = -263.0
+offset_right = -16.0
+offset_bottom = -195.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_7ekua")
+theme_override_font_sizes/font_size = 61
+text = "Cinco Noches 
+Chambeando
+Con Alfredo"
+metadata/_edit_lock_ = true
+
+[node name="Label3" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = -260.0
+offset_top = 257.0
+offset_right = 32.0
+offset_bottom = 325.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_7ekua")
+theme_override_font_sizes/font_size = 61
+text = "Version 24 horas by Frask"
+metadata/_edit_lock_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Control/Control"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 129.0
+offset_right = 754.0
+offset_bottom = 180.0
+metadata/_edit_lock_ = true
+
+[node name="chamba" type="Control" parent="Control"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/chamba"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Control/chamba/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_u3qro")
+
+[node name="chamba" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wa442")
+}
+
+[node name="menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_oy8tp")
+autoplay = true
+
+[connection signal="pressed" from="Control/Control/TextureButton" to="." method="_on_texture_button_pressed"]

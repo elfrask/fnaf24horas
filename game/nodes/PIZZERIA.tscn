@@ -1,0 +1,368 @@
+[gd_scene load_steps=25 format=3 uid="uid://co0wfdjy4qn84"]
+
+[ext_resource type="Script" path="res://nodes/PIZZERIA.gd" id="1_fx246"]
+[ext_resource type="PackedScene" uid="uid://nloao47ros27" path="res://assets/models/pizzeria/pizzeria.gltf" id="2_p0wha"]
+[ext_resource type="PackedScene" uid="uid://bmoc1djgax2wb" path="res://nodes/player.tscn" id="3_wp8a7"]
+[ext_resource type="PackedScene" uid="uid://qvqt4cw3bp0w" path="res://nodes/oficina.tscn" id="4_jv218"]
+[ext_resource type="PackedScene" uid="uid://o72ut2hkl3h2" path="res://nodes/button.tscn" id="5_56upc"]
+[ext_resource type="PackedScene" uid="uid://dl35cwdal4cko" path="res://nodes/mesa.tscn" id="6_knfru"]
+[ext_resource type="Texture2D" uid="uid://c24isve2dwm03" path="res://assets/textures/ventilacion.jpg" id="6_x5bdr"]
+[ext_resource type="PackedScene" uid="uid://c2xhd54fje1bm" path="res://nodes/points.tscn" id="7_0b1jf"]
+[ext_resource type="PackedScene" uid="uid://i2431oei7n" path="res://nodes/doors.tscn" id="7_703d8"]
+[ext_resource type="PackedScene" uid="uid://dmemqmlm8okjl" path="res://nodes/animatronicos/Freddy.tscn" id="8_1554o"]
+[ext_resource type="PackedScene" uid="uid://b1r2oijvhr565" path="res://nodes/freddy_outage.tscn" id="8_p7l4p"]
+[ext_resource type="PackedScene" uid="uid://dfnma7rpot8wg" path="res://nodes/animatronicos/bonifacio.tscn" id="9_2r8lk"]
+[ext_resource type="PackedScene" uid="uid://cbnnrxk6mp4ld" path="res://nodes/animatronicos/Chica.tscn" id="10_ifr15"]
+[ext_resource type="PackedScene" uid="uid://c2lo5sqhftoix" path="res://nodes/animatronicos/Foxy.tscn" id="11_yryxs"]
+
+[sub_resource type="Environment" id="Environment_ri7r4"]
+background_mode = 1
+ambient_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00fip"]
+albedo_color = Color(0.164706, 0.164706, 0.164706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rai8l"]
+material = SubResource("StandardMaterial3D_00fip")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwju8"]
+albedo_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2qq8w"]
+material = SubResource("StandardMaterial3D_fwju8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uajns"]
+transparency = 1
+albedo_color = Color(0.32549, 0.65098, 1, 0.188235)
+
+[sub_resource type="BoxMesh" id="BoxMesh_82l74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7deyj"]
+size = Vector3(3.44141, 4.61838, 4.24792)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0iwpi"]
+albedo_color = Color(0.556863, 0.364706, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kgfxk"]
+material = SubResource("StandardMaterial3D_0iwpi")
+
+[node name="game" type="Node3D"]
+script = ExtResource("1_fx246")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0087265, 0.999962, 0, -0.999962, 0.0087265, 0, 0, 0)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ri7r4")
+
+[node name="pizzeria" parent="." instance=ExtResource("2_p0wha")]
+
+[node name="techo" type="MeshInstance3D" parent="pizzeria"]
+unique_name_in_owner = true
+transform = Transform3D(47.6136, 0, 0, 0, 0.544927, 0, 0, 0, 52.3977, 2.41879, 7.64438, 8.8292)
+visible = false
+mesh = SubResource("BoxMesh_rai8l")
+
+[node name="oficina" type="Node3D" parent="pizzeria"]
+
+[node name="player" parent="pizzeria/oficina" instance=ExtResource("3_wp8a7")]
+transform = Transform3D(-4.37083e-08, -0.0117631, 0.999931, -5.14188e-10, 0.999931, 0.0117631, -1, -6.16174e-15, -4.37114e-08, 22.3356, 4.2675, 19)
+CamareViewport = NodePath("../../Camaras/viewport")
+
+[node name="pared" type="MeshInstance3D" parent="pizzeria/oficina"]
+transform = Transform3D(0.923813, 0, 0, 0, 6.98047, 0, 0, 0, 13.4061, 25.8078, 3.8291, 19)
+mesh = SubResource("BoxMesh_2qq8w")
+skeleton = NodePath("../..")
+
+[node name="mesa" parent="pizzeria/oficina" instance=ExtResource("4_jv218")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.485179, 19.3285)
+
+[node name="gameplay" type="Node3D" parent="pizzeria/oficina"]
+
+[node name="buttonR" parent="pizzeria/oficina/gameplay" instance=ExtResource("5_56upc")]
+transform = Transform3D(0.597184, 0, 0, 0, 0.597184, 0, 0, 0, 0.780128, 13.0361, 4.80337, 13.107)
+Puerta = NodePath("../../Puerta_R")
+Bombilla = NodePath("../../../out_office/r")
+
+[node name="buttonL" parent="pizzeria/oficina/gameplay" instance=ExtResource("5_56upc")]
+transform = Transform3D(-0.597184, 0, -6.8201e-08, 0, 0.597184, 0, 5.22075e-08, 0, -0.780128, 13.0361, 4.80337, 25.5119)
+Puerta = NodePath("../../Puerta_L")
+Bombilla = NodePath("../../../out_office/l")
+
+[node name="Sprite3D" type="Sprite3D" parent="pizzeria/oficina"]
+transform = Transform3D(-1.07824e-08, 0, -1, 0, 0.260229, 0, 0.246673, 0, -4.37114e-08, 6.69836, 5.86205, 19.0202)
+modulate = Color(0.290196, 0.290196, 0.290196, 1)
+texture = ExtResource("6_x5bdr")
+
+[node name="Sprite3D2" type="Sprite3D" parent="pizzeria/oficina"]
+transform = Transform3D(-1.07824e-08, 0, -1, 0, 0.260229, 0, 0.246673, 0, -4.37114e-08, -0.889303, 5.86205, 19.0202)
+modulate = Color(0.172549, 0.172549, 0.172549, 1)
+texture = ExtResource("6_x5bdr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pizzeria/oficina"]
+transform = Transform3D(3.03523, 0, 0, 0, 3.03523, 0, 0, 0, 0.191418, 10.8201, 4.65169, 26.0009)
+material_override = SubResource("StandardMaterial3D_uajns")
+mesh = SubResource("BoxMesh_82l74")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="pizzeria/oficina"]
+transform = Transform3D(3.03523, 0, 0, 0, 3.03523, 0, 0, 0, 0.191418, 10.8201, 4.65169, 12.7526)
+material_override = SubResource("StandardMaterial3D_uajns")
+mesh = SubResource("BoxMesh_82l74")
+
+[node name="Puerta_R" parent="pizzeria/oficina" instance=ExtResource("7_703d8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6722, 0.94514, 12.5892)
+doorID = "R-door"
+
+[node name="coll" type="CollisionShape3D" parent="pizzeria/oficina/Puerta_R"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5409, 2.80376, 1.62397)
+shape = SubResource("BoxShape3D_7deyj")
+
+[node name="Puerta_L" parent="pizzeria/oficina" instance=ExtResource("7_703d8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6722, 0.94514, 26.1699)
+doorID = "L-door"
+
+[node name="coll2" type="CollisionShape3D" parent="pizzeria/oficina/Puerta_L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18831, 2.80376, 1.62397)
+shape = SubResource("BoxShape3D_7deyj")
+
+[node name="sala_iluminacion" type="Node3D" parent="pizzeria/oficina"]
+
+[node name="Bombilla" type="OmniLight3D" parent="pizzeria/oficina/sala_iluminacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8925, 6.77436, 19.4414)
+omni_range = 9.13562
+
+[node name="Bombilla2" type="OmniLight3D" parent="pizzeria/oficina/sala_iluminacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6964, 6.77436, 19.4414)
+omni_range = 9.13562
+
+[node name="luz_emergencia" type="Node3D" parent="pizzeria/oficina"]
+visible = false
+
+[node name="luz" type="OmniLight3D" parent="pizzeria/oficina/luz_emergencia"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.578, 3.21524, 19.1066)
+light_color = Color(0.360784, 0.427451, 0.647059, 1)
+omni_range = 9.87525
+
+[node name="fredddy_outage" parent="pizzeria/oficina" instance=ExtResource("8_p7l4p")]
+transform = Transform3D(0.840113, 0, 0.542412, 0, 1, 0, -0.542412, 0, 0.840113, 15.2128, 1.06486, 12.5007)
+FreddyInstance = NodePath("../../animatronicos/freddy")
+
+[node name="out_office" type="Node3D" parent="pizzeria"]
+
+[node name="l" type="SpotLight3D" parent="pizzeria/out_office"]
+transform = Transform3D(0.759254, 0.0373244, 0.649724, -0.649954, -0.00726519, 0.759939, 0.0330846, -0.999277, 0.018743, 18.1032, 7.0919, 30.2995)
+visible = false
+spot_range = 13.9337
+spot_angle = 38.5492
+
+[node name="r" type="SpotLight3D" parent="pizzeria/out_office"]
+transform = Transform3D(0.759253, 0.0373244, 0.649724, -0.649954, -0.00726515, 0.759939, 0.0330846, -0.999277, 0.018743, 18.1032, 6.23135, 8.27662)
+visible = false
+spot_range = 14.8558
+spot_angle = 38.5492
+
+[node name="iluminacion" type="Node3D" parent="pizzeria"]
+
+[node name="luz" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(0.416427, -0.887992, 0.195086, -0.424231, -5.22261e-08, 0.905554, -0.804125, -0.459859, -0.376714, 4.08021, 7.21187, 7.30565)
+light_energy = 1.765
+spot_range = 12.4507
+spot_angle = 52.4776
+
+[node name="luz2" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(0.905554, -1.85437e-08, 0.424231, -0.424231, -3.9583e-08, 0.905554, 0, -1, -4.37114e-08, 4.08021, 7.21187, 30.6733)
+light_energy = 1.765
+spot_range = 12.4507
+spot_angle = 52.4776
+
+[node name="luz3" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(0.839716, -0.374332, 0.393387, -0.424231, -2.49587e-08, 0.905554, -0.338977, -0.927295, -0.158803, -9.37394, 7.21187, 29.5072)
+light_energy = 1.765
+spot_range = 12.4507
+spot_angle = 52.4776
+
+[node name="luz4" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(0.157279, 0.984802, 0.0736816, -0.424231, -2.87953e-08, 0.905554, 0.891791, -0.173683, 0.417783, -3.83721, 7.21187, 20.1059)
+light_energy = 0.635
+spot_range = 12.4507
+spot_angle = 52.4776
+
+[node name="luz5" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(0.472443, 0.685381, 0.554122, -0.836654, 0.151056, 0.526491, 0.277143, -0.712345, 0.644791, 18.6751, 6.11413, 1.85226)
+visible = false
+light_energy = 0.635
+spot_range = 65.5623
+spot_angle = 52.4776
+
+[node name="luz7" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(-0.266818, -0.714279, -0.647003, -0.885412, 0.4468, -0.128123, 0.380597, 0.538679, -0.751646, 5.7601, 4.72236, -15.5128)
+light_energy = 5.012
+spot_range = 27.599
+spot_angle = 35.8765
+
+[node name="luz6" type="SpotLight3D" parent="pizzeria/iluminacion"]
+transform = Transform3D(-0.163018, -0.707676, -0.687474, -0.906998, -0.166744, 0.386718, -0.388303, 0.686579, -0.614678, -5.03458, 6.11413, -14.4761)
+light_energy = 3.515
+spot_range = 18.302
+spot_angle = 49.64
+
+[node name="sala de fiestas" type="Node3D" parent="pizzeria"]
+
+[node name="MESA" parent="pizzeria/sala de fiestas" instance=ExtResource("6_knfru")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 7.40501, 2.72793, -1.45337)
+
+[node name="MESA2" parent="pizzeria/sala de fiestas" instance=ExtResource("6_knfru")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 7.40501, 2.72793, -11.4482)
+
+[node name="tarima" type="Node3D" parent="pizzeria/sala de fiestas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5956, 1.76004, -6.16994)
+
+[node name="base" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima"]
+transform = Transform3D(4.46122, 0, 0, 0, 1, 0, 0, 0, 11.9491, 1.57585, -0.394435, 0)
+mesh = SubResource("BoxMesh_kgfxk")
+
+[node name="escaleras" type="Node3D" parent="pizzeria/sala de fiestas/tarima"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2439, 0, -6.42326)
+
+[node name="escaleras" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima/escaleras"]
+transform = Transform3D(1.50517, 0, 0, 0, 0.406189, 0, 0, 0, 1.71202, 0.243887, -0.394436, 0.672381)
+mesh = SubResource("BoxMesh_kgfxk")
+skeleton = NodePath("../..")
+
+[node name="escaleras2" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima/escaleras"]
+transform = Transform3D(1.50517, 0, 0, 0, 0.406189, 0, 0, 0, 1.71202, 0.243887, -0.742895, 0.0923829)
+mesh = SubResource("BoxMesh_kgfxk")
+skeleton = NodePath("../..")
+
+[node name="escaleras2" type="Node3D" parent="pizzeria/sala de fiestas/tarima"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.2439, 0, 6.46493)
+
+[node name="escaleras" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima/escaleras2"]
+transform = Transform3D(1.50517, 0, 0, 0, 0.406189, 0, 0, 0, 1.71202, 0.243887, -0.394436, 0.672381)
+mesh = SubResource("BoxMesh_kgfxk")
+skeleton = NodePath("../..")
+
+[node name="escaleras2" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima/escaleras2"]
+transform = Transform3D(1.50517, 0, 0, 0, 0.406189, 0, 0, 0, 1.71202, 0.243887, -0.742895, 0.0923829)
+mesh = SubResource("BoxMesh_kgfxk")
+skeleton = NodePath("../..")
+
+[node name="escaleras3" type="Node3D" parent="pizzeria/sala de fiestas/tarima"]
+transform = Transform3D(5.89952e-07, 0, 1, 0, 1, 0, -4.49885, 0, 1.31134e-07, -1.20479, 0, 0.985007)
+
+[node name="escaleras" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima/escaleras3"]
+transform = Transform3D(1.50517, 0, 0, 0, 0.406189, 0, 0, 0, 1.71202, 0.243887, -0.394436, 0.672381)
+mesh = SubResource("BoxMesh_kgfxk")
+skeleton = NodePath("../..")
+
+[node name="escaleras2" type="MeshInstance3D" parent="pizzeria/sala de fiestas/tarima/escaleras3"]
+transform = Transform3D(1.50517, 0, 0, 0, 0.406189, 0, 0, 0, 1.71202, 0.243887, -0.742895, 0.0923829)
+mesh = SubResource("BoxMesh_kgfxk")
+skeleton = NodePath("../..")
+
+[node name="puntos" type="Node3D" parent="pizzeria"]
+
+[node name="BONNIE" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.1765, 1.92994, -9.50436)
+
+[node name="BONNIE2" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-0.458603, 0, -0.888641, 0, 1, 0, 0.888641, 0, -0.458603, 11.8289, 1.13817, -4.88197)
+
+[node name="BONNIE3" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.893371, 0, -0.449319, 0, 1, 0, 0.449319, 0, 0.893371, -0.775763, 1.13817, -2.55144)
+
+[node name="BONNIE4" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.696589, 0, 0.71747, 0, 1, 0, -0.71747, 0, 0.696589, -4.54557, 1.13817, 14.0845)
+
+[node name="BONNIE5" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.202668, 0, 0.979248, 0, 1, 0, -0.979248, 0, 0.202668, 2.4068, 1.13817, 27.5262)
+
+[node name="BONNIE6" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-0.725122, 0, 0.68862, 0, 1, 0, -0.68862, 0, -0.725122, 9.82557, 1.13817, 28.8306)
+
+[node name="BONNIE7" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-0.725122, 0, 0.68862, 0, 1, 0, -0.68862, 0, -0.725122, 14.1679, 1.13817, 28.2733)
+
+[node name="FREDDY" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.1765, 1.92994, -6.04696)
+
+[node name="CHICA" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.1765, 1.92994, -2.26147)
+
+[node name="CHICA2" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.200445, 0, -0.979705, 0, 1, 0, 0.979705, 0, 0.200445, 4.93663, 1.15004, -6.52333)
+
+[node name="CHICA3" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.953707, 0, 0.300739, 0, 1, 0, -0.300739, 0, 0.953707, -4.97934, 1.15004, -6.01486)
+
+[node name="CHICA4" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.953707, 0, 0.300739, 0, 1, 0, -0.300739, 0, 0.953707, -12.5297, 1.15004, -10.5761)
+
+[node name="CHICA5" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.872573, 0, -0.488484, 0, 1, 0, 0.488484, 0, 0.872573, -2.48665, 1.15004, 6.23068)
+
+[node name="CHICA6" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.463002, 0, 0.886357, 0, 1, 0, -0.886357, 0, 0.463002, 2.53898, 1.15004, 7.2275)
+
+[node name="CHICA7" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.700872, 0, 0.713287, 0, 1, 0, -0.713287, 0, 0.700872, 8.4453, 1.15004, 10.4854)
+
+[node name="CHICA8" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(0.785133, 0, 0.619327, 0, 1, 0, -0.619327, 0, 0.785133, 13.5942, 1.15004, 10.4212)
+
+[node name="FOXY" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-0.716971, 0, -0.697103, 0, 1, 0, 0.697103, 0, -0.716971, -11.4117, 1.13818, 27.77)
+
+[node name="FOXY2" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-0.264345, 0, 0.964428, 0, 1, 0, -0.964428, 0, -0.264345, 5.67867, 1.13818, 30.3882)
+
+[node name="FOXY3" parent="pizzeria/puntos" instance=ExtResource("7_0b1jf")]
+transform = Transform3D(-0.857877, 0, 0.513855, 0, 1, 0, -0.513855, 0, -0.857877, 14.2583, 1.13818, 29.4257)
+
+[node name="animatronicos" type="Node3D" parent="pizzeria"]
+
+[node name="freddy" parent="pizzeria/animatronicos" instance=ExtResource("8_1554o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.1202, 1.98329, -6.05634)
+
+[node name="bonnie" parent="pizzeria/animatronicos" instance=ExtResource("9_2r8lk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.9861, 1.94316, -9.51223)
+
+[node name="chica" parent="pizzeria/animatronicos" instance=ExtResource("10_ifr15")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.2981, 1.9285, -2.31598)
+
+[node name="IA" parent="pizzeria/animatronicos" instance=ExtResource("11_yryxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0781, 0, 27.1044)
+
+[node name="Camaras" type="Node3D" parent="pizzeria"]
+
+[node name="viewport" type="SubViewport" parent="pizzeria/Camaras"]
+size = Vector2i(1280, 840)
+
+[node name="CAM1" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(0.561368, -0.627925, 0.539052, 0.0660023, 0.683266, 0.727181, -0.82493, -0.372637, 0.425008, 18.8385, 6.91169, 28.3569)
+current = true
+
+[node name="CAM2" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(-0.32261, -0.0621885, 0.944487, -0.00790716, 0.997982, 0.0630099, -0.946499, 0.0128594, -0.32245, 11.3742, 4.74713, 27.657)
+
+[node name="CAM3" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(-0.893646, -0.315146, 0.3195, -0.0215044, 0.741195, 0.670946, -0.448258, 0.592717, -0.669142, 18.6864, 6.61645, 7.00801)
+
+[node name="CAM4" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(0.2649, -0.25215, 0.930725, 0.0446299, 0.967378, 0.249377, -0.963242, -0.0245219, 0.267512, 12.8867, 5.92448, 10.8559)
+
+[node name="CAM5" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(0.990937, -0.0745272, 0.111761, 0.0446299, 0.967378, 0.249377, -0.1267, -0.242129, 0.961936, -2.40011, 6.04884, 23.2294)
+
+[node name="CAM6" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(0.828627, 0.479085, -0.289578, 0.00115117, 0.515827, 0.856692, 0.5598, -0.710211, 0.426877, -12.9662, 6.67371, 32.8947)
+
+[node name="CAM7" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(-0.656375, 0.216579, -0.722679, 0.0446299, 0.967378, 0.249377, 0.753114, 0.131432, -0.644628, -6.4907, 5.39384, -11.1082)
+
+[node name="CAM8" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(0.811323, -0.180748, 0.555955, 0.0446299, 0.967378, 0.249377, -0.582893, -0.177513, 0.792922, 14.0711, 5.39384, 2.68486)
+
+[node name="CAM9" type="Camera3D" parent="pizzeria/Camaras/viewport"]
+transform = Transform3D(-0.776731, 0.190585, -0.600305, 0.0446299, 0.967378, 0.249377, 0.62825, 0.166907, -0.759898, 15.2325, 5.83269, -10.7602)

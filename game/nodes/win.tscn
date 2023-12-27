@@ -1,0 +1,234 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca88qadebqj24"]
+
+[ext_resource type="Script" path="res://nodes/win.gd" id="1_nw3v3"]
+[ext_resource type="FontFile" uid="uid://xqp722nwppc" path="res://assets/font/Silver.ttf" id="1_rapcw"]
+[ext_resource type="AudioStream" uid="uid://db6h5l2cuxavy" path="res://assets/sounds/win/clock.wav" id="2_6k2lr"]
+[ext_resource type="AudioStream" uid="uid://crb8c0rmx7ebd" path="res://assets/sounds/win/kids.wav" id="3_g4401"]
+
+[sub_resource type="Animation" id="Animation_tabw6"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/time:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(529, 294)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/time/oldtime:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rlaq0"]
+resource_name = "win"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/time:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(529, 294), Vector2(529, 294), Vector2(529, 256)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("clock")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("kids")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(9.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(12.8, 14.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/time/oldtime:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(12.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"tomenu"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mk3rx"]
+_data = {
+"RESET": SubResource("Animation_tabw6"),
+"win": SubResource("Animation_rlaq0")
+}
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nw3v3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="am" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 294.0
+offset_right = 669.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("1_rapcw")
+theme_override_font_sizes/font_size = 56
+text = "AM"
+
+[node name="time" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 529.0
+offset_top = 294.0
+offset_right = 569.0
+offset_bottom = 334.0
+
+[node name="oldtime" type="Label" parent="Control/time"]
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("1_rapcw")
+theme_override_font_sizes/font_size = 56
+text = "5:59"
+metadata/_edit_lock_ = true
+
+[node name="newtimetime" type="Label" parent="Control/time"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 66.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("1_rapcw")
+theme_override_font_sizes/font_size = 56
+text = "6:00"
+metadata/_edit_lock_ = true
+
+[node name="bars" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 425.0
+offset_top = 121.0
+offset_right = -377.0
+offset_bottom = -349.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="bars2" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 426.0
+offset_top = 335.0
+offset_right = -376.0
+offset_bottom = -135.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="win" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mk3rx")
+}
+
+[node name="clock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6k2lr")
+
+[node name="kids" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g4401")

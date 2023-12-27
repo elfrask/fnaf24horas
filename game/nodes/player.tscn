@@ -1,0 +1,601 @@
+[gd_scene load_steps=24 format=3 uid="uid://bmoc1djgax2wb"]
+
+[ext_resource type="Script" path="res://nodes/player.gd" id="1_qxds2"]
+[ext_resource type="Texture2D" uid="uid://b3ufsl7wpfitx" path="res://assets/GUI/energy_usage.png" id="2_bmde1"]
+[ext_resource type="Shader" path="res://nodes/camaras.gdshader" id="2_dy2vl"]
+[ext_resource type="Texture2D" uid="uid://bjaw5oypvti4w" path="res://assets/GUI/camare_square.png" id="2_tc7y4"]
+[ext_resource type="Texture2D" uid="uid://d1flfiikei63j" path="res://assets/GUI/test.jpg" id="3_6hkbj"]
+[ext_resource type="Texture2D" uid="uid://dk8ahmydtrpye" path="res://assets/GUI/rec.png" id="3_j4iyo"]
+[ext_resource type="FontFile" uid="uid://xqp722nwppc" path="res://assets/font/Silver.ttf" id="3_m567c"]
+[ext_resource type="Texture2D" uid="uid://vlsb5y4uxi02" path="res://assets/GUI/camare.png" id="4_qdk8b"]
+[ext_resource type="Texture2D" uid="uid://cxhl306permi8" path="res://assets/GUI/map.png" id="6_m2n7c"]
+[ext_resource type="PackedScene" uid="uid://c7f8p0grbp6k" path="res://nodes/CAM_button.tscn" id="7_usc6w"]
+[ext_resource type="Texture2D" uid="uid://72n107qtno87" path="res://assets/GUI/mute.png" id="9_p2e4x"]
+[ext_resource type="PackedScene" uid="uid://c2xhd54fje1bm" path="res://nodes/points.tscn" id="12_6bov3"]
+[ext_resource type="AudioStream" uid="uid://behuv0nbfs4uo" path="res://assets/sounds/camara.mp3" id="13_a4jxu"]
+[ext_resource type="AudioStream" uid="uid://gapvciw5kqjk" path="res://assets/sounds/ambient.mp3" id="14_lrpor"]
+[ext_resource type="AudioStream" uid="uid://o7x3jmrtvqr3" path="res://assets/sounds/call.ogg" id="15_pvk80"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5n8i"]
+shader = ExtResource("2_dy2vl")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="Animation" id="Animation_6okew"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/gui/Control:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/gui/Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/l:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(115, 648)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/l:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/r:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(117, 648)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/r:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1035, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 648)]
+}
+
+[sub_resource type="Animation" id="Animation_6gshu"]
+resource_name = "close"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/gui/Control:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1152, 648), Vector2(1152, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/gui/Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/gui/Control:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0xbjw"]
+resource_name = "open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/gui/Control:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1152, 648), Vector2(1152, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/gui/Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/gui/Control:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4f6n"]
+_data = {
+"RESET": SubResource("Animation_6okew"),
+"close": SubResource("Animation_6gshu"),
+"open": SubResource("Animation_0xbjw")
+}
+
+[sub_resource type="Animation" id="Animation_2pfhw"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jumpscare:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.05245e-07, 0, -2.40773)]
+}
+
+[sub_resource type="Animation" id="Animation_1ccsf"]
+resource_name = "play"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("jumpscare:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.408), Vector3(1.05245e-07, 0, -2.40773), Vector3(-0.355325, 0.22809, -2.40773), Vector3(0.389832, -0.286074, -2.40773), Vector3(-0.081144, -0.625388, -2.40773), Vector3(-0.258357, -0.268213, -2.40773), Vector3(0.0691464, 0.0679011, -2.40773), Vector3(0.21139, 0.142385, -2.40773), Vector3(-0.226591, -0.495566, -2.40773), Vector3(0.558908, -0.229098, -2.40773), Vector3(0.0443143, -0.0673653, -2.40773)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s7lwh"]
+_data = {
+"RESET": SubResource("Animation_2pfhw"),
+"play": SubResource("Animation_1ccsf")
+}
+
+[node name="player" type="Camera3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+current = true
+script = ExtResource("1_qxds2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="l" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 115.0
+offset_bottom = 648.0
+grow_vertical = 2
+
+[node name="r" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1035.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="gui" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Control/gui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 648.0
+offset_right = 1152.0
+offset_bottom = 1296.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="content" type="TextureRect" parent="Control/gui/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="rec" type="TextureRect" parent="Control/gui/Control"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 41.0
+offset_right = 100.0
+offset_bottom = 88.0
+texture = ExtResource("3_j4iyo")
+metadata/_edit_lock_ = true
+
+[node name="shader" type="TextureRect" parent="Control/gui/Control"]
+material = SubResource("ShaderMaterial_m5n8i")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6hkbj")
+metadata/_edit_lock_ = true
+
+[node name="cam" type="Label" parent="Control/gui/Control"]
+layout_mode = 0
+offset_left = 891.0
+offset_top = 129.0
+offset_right = 1024.0
+offset_bottom = 192.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_m567c")
+theme_override_font_sizes/font_size = 56
+text = "CAM1"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="camara" type="TextureRect" parent="Control/gui/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tc7y4")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="map" type="TextureRect" parent="Control/gui/Control"]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 115.0
+offset_right = 1125.0
+offset_bottom = 486.0
+texture = ExtResource("6_m2n7c")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="camaras" type="Control" parent="Control/gui/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="cam1" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 649.0
+offset_top = 437.0
+offset_right = 609.0
+offset_bottom = 397.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+
+[node name="cam2" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 647.0
+offset_top = 348.0
+offset_right = 607.0
+offset_bottom = 308.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM2"
+NumberCAM = "2"
+
+[node name="cam3" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 809.0
+offset_top = 437.0
+offset_right = 769.0
+offset_bottom = 397.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM3"
+NumberCAM = "3"
+
+[node name="cam4" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 808.0
+offset_top = 348.0
+offset_right = 768.0
+offset_bottom = 308.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM4"
+NumberCAM = "4"
+
+[node name="cam5" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 705.0
+offset_top = 304.0
+offset_right = 665.0
+offset_bottom = 264.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM5"
+NumberCAM = "5"
+
+[node name="cam6" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 645.0
+offset_top = 227.0
+offset_right = 605.0
+offset_bottom = 187.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM6"
+NumberCAM = "6"
+
+[node name="cam7" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 987.0
+offset_top = 305.0
+offset_right = 947.0
+offset_bottom = 265.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM7"
+NumberCAM = "7"
+
+[node name="cam8" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 856.0
+offset_top = 391.0
+offset_right = 816.0
+offset_bottom = 351.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM8"
+NumberCAM = "8"
+
+[node name="cam9" parent="Control/gui/Control/camaras" instance=ExtResource("7_usc6w")]
+layout_mode = 1
+offset_left = 979.0
+offset_top = 424.0
+offset_right = 939.0
+offset_bottom = 384.0
+scale = Vector2(0.45, 0.45)
+NodeSet = NodePath("../../../../..")
+Property = "CAM9"
+NumberCAM = "9"
+
+[node name="usage" type="TextureProgressBar" parent="Control/gui"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 523.0
+offset_right = 256.0
+offset_bottom = 561.0
+max_value = 5.0
+value = 1.0
+texture_progress = ExtResource("2_bmde1")
+
+[node name="energy" type="Label" parent="Control/gui"]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 460.0
+offset_right = 283.0
+offset_bottom = 523.0
+theme_override_fonts/font = ExtResource("3_m567c")
+theme_override_font_sizes/font_size = 56
+text = "100%"
+
+[node name="Label" type="Label" parent="Control/gui"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 513.0
+offset_right = 125.0
+offset_bottom = 576.0
+theme_override_fonts/font = ExtResource("3_m567c")
+theme_override_font_sizes/font_size = 56
+text = "Usage:"
+
+[node name="Label2" type="Label" parent="Control/gui"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 459.0
+offset_right = 219.0
+offset_bottom = 522.0
+theme_override_fonts/font = ExtResource("3_m567c")
+theme_override_font_sizes/font_size = 56
+text = "Power left: "
+
+[node name="open_camaras" type="TextureButton" parent="Control/gui"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 577.0
+offset_right = 894.0
+offset_bottom = 648.0
+texture_normal = ExtResource("4_qdk8b")
+texture_pressed = ExtResource("4_qdk8b")
+texture_hover = ExtResource("4_qdk8b")
+texture_focused = ExtResource("4_qdk8b")
+
+[node name="mute" type="TextureButton" parent="Control/gui"]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 579.0
+offset_right = 1105.0
+offset_bottom = 619.0
+texture_normal = ExtResource("9_p2e4x")
+texture_pressed = ExtResource("9_p2e4x")
+texture_hover = ExtResource("9_p2e4x")
+texture_focused = ExtResource("9_p2e4x")
+
+[node name="hour" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 995.0
+offset_top = 16.0
+offset_right = 1128.0
+offset_bottom = 79.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_m567c")
+theme_override_font_sizes/font_size = 56
+text = "12 Pm"
+horizontal_alignment = 2
+
+[node name="camaras" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i4f6n")
+}
+
+[node name="usage" type="Timer" parent="."]
+
+[node name="ani" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s7lwh")
+}
+
+[node name="jumpscare" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05245e-07, 0, -2.40773)
+
+[node name="jumpscare" parent="jumpscare" instance=ExtResource("12_6bov3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19689e-08, -3.46217, 0.502587)
+
+[node name="luz" type="OmniLight3D" parent="jumpscare"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60736e-08, 0, 1.74036)
+
+[node name="camara" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_a4jxu")
+
+[node name="ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_lrpor")
+
+[node name="call" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_pvk80")
+
+[connection signal="focus_entered" from="Control/l" to="." method="_on_l_focus_entered"]
+[connection signal="mouse_entered" from="Control/l" to="." method="_on_l_mouse_entered"]
+[connection signal="focus_entered" from="Control/r" to="." method="_on_r_focus_entered"]
+[connection signal="mouse_entered" from="Control/r" to="." method="_on_r_mouse_entered"]
+[connection signal="mouse_entered" from="Control/gui/open_camaras" to="." method="_on_open_camaras_mouse_entered"]
+[connection signal="pressed" from="Control/gui/mute" to="." method="_on_mute_pressed"]
+[connection signal="timeout" from="usage" to="." method="_on_usage_timeout"]
+[connection signal="finished" from="call" to="." method="_on_call_finished"]

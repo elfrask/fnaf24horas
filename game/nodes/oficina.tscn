@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://qvqt4cw3bp0w"]
+
+[ext_resource type="PackedScene" uid="uid://dr8ulpsl14fcy" path="res://assets/models/pizzeria/decorations/retro_tv.glb" id="1_306tn"]
+[ext_resource type="Script" path="res://nodes/oficina_mesa.gd" id="1_hla7a"]
+[ext_resource type="PackedScene" uid="uid://dk4c3wgp4631q" path="res://nodes/fan.tscn" id="2_8xvpu"]
+[ext_resource type="PackedScene" uid="uid://dde4hjn1csyqs" path="res://nodes/cupcake.tscn" id="3_ider2"]
+[ext_resource type="PackedScene" uid="uid://c4gessw4rbg2l" path="res://assets/models/pizzeria/decorations/dollfreddy/dollfreddy.glb" id="4_mbpxk"]
+[ext_resource type="AudioStream" uid="uid://cdehmateq3uop" path="res://assets/sounds/freddynose.mp3" id="6_gwebs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1akuo"]
+albedo_color = Color(0.164706, 0.164706, 0.164706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y62bt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v8pv8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n6lfn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63hrj"]
+size = Vector3(1.34985, 1.37793, 1.31055)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_hla7a")
+
+[node name="mesa" type="Node3D" parent="."]
+
+[node name="mesa" type="MeshInstance3D" parent="mesa"]
+transform = Transform3D(3.64605, 0, 0, 0, 0.151497, 0, 0, 0, 8.02968, 0, 2.46428, 0)
+material_override = SubResource("StandardMaterial3D_1akuo")
+mesh = SubResource("BoxMesh_y62bt")
+skeleton = NodePath("../..")
+
+[node name="pata" type="MeshInstance3D" parent="mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, 1.30487, 1.02799, 3.53506)
+material_override = SubResource("StandardMaterial3D_1akuo")
+mesh = SubResource("BoxMesh_v8pv8")
+skeleton = NodePath("../mesa")
+
+[node name="pata2" type="MeshInstance3D" parent="mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, 1.30487, 1.02799, -3.68118)
+material_override = SubResource("StandardMaterial3D_1akuo")
+mesh = SubResource("BoxMesh_v8pv8")
+skeleton = NodePath("../mesa")
+
+[node name="pata3" type="MeshInstance3D" parent="mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, -1.43249, 1.02799, 3.53506)
+material_override = SubResource("StandardMaterial3D_1akuo")
+mesh = SubResource("BoxMesh_v8pv8")
+skeleton = NodePath("../mesa")
+
+[node name="pata4" type="MeshInstance3D" parent="mesa"]
+transform = Transform3D(0.234596, 0, 0, 0, 2.89267, 0, 0, 0, 0.234596, -1.43249, 1.02799, -3.68118)
+material_override = SubResource("StandardMaterial3D_1akuo")
+mesh = SubResource("BoxMesh_v8pv8")
+skeleton = NodePath("../mesa")
+
+[node name="contenido" type="Node3D" parent="mesa"]
+
+[node name="Sketchfab_Scene" parent="mesa/contenido" instance=ExtResource("1_306tn")]
+transform = Transform3D(0.59007, 0, 0.807352, 0, 1, 0, -0.807352, 0, 0.59007, -0.0774384, 3.31588, -2.05381)
+
+[node name="fan" parent="mesa/contenido" instance=ExtResource("2_8xvpu")]
+transform = Transform3D(0.0465773, 0, 0.0181813, 0, 0.05, 0, -0.0181813, 0, 0.0465773, 0.090837, 2.53939, 1.99514)
+
+[node name="cupcake" parent="mesa/contenido" instance=ExtResource("3_ider2")]
+transform = Transform3D(0.0854611, 0, 0.380521, 0, 0.39, 0, -0.380521, 0, 0.0854611, -0.0220337, 4.07372, -2.00643)
+
+[node name="Sketchfab_Scene2" parent="mesa/contenido" instance=ExtResource("4_mbpxk")]
+transform = Transform3D(0.0145471, 0, 0.184427, 0, 0.185, 0, -0.184427, 0, 0.0145471, -0.34066, 3.15832, 0.0375053)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mesa/contenido/Sketchfab_Scene2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesa/contenido/Sketchfab_Scene2/StaticBody3D"]
+transform = Transform3D(1, 0, 3.72529e-08, 0, 1, 0, -3.72529e-08, 0, 1, 0.0881859, 0.627846, 1.11801)
+shape = SubResource("BoxShape3D_n6lfn")
+
+[node name="Area3D" type="Area3D" parent="mesa/contenido/Sketchfab_Scene2/StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesa/contenido/Sketchfab_Scene2/StaticBody3D/Area3D"]
+transform = Transform3D(1, 0, 4.17233e-07, 0, 1, 0, -4.17233e-07, 0, 1, 0.152462, 0.635691, 1.9329)
+shape = SubResource("BoxShape3D_63hrj")
+
+[node name="freddynose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_gwebs")
+
+[connection signal="body_entered" from="mesa/contenido/Sketchfab_Scene2/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]

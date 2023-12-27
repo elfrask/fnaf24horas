@@ -1,0 +1,5 @@
+para el pichero "assets.zip" solo extraes la carpeta "assets" dentro de la raiz del proyecto:
+
+assets.zip -> res://assets
+
+trata de descomprimir el fichero antes de abrir el proyecto ya que se pueden romper las dependencias

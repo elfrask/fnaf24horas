@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt65tk6ka5yk5"]
+
+[ext_resource type="Script" path="res://nodes/ia.gd" id="1_tt052"]
+[ext_resource type="AudioStream" uid="uid://sqf7o1hcttux" path="res://assets/sounds/jumpscare.mp3" id="2_rrjgk"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pogvq"]
+albedo_color = Color(0.690196, 0, 0.12549, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lm33p"]
+material = SubResource("ORMMaterial3D_pogvq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3jec"]
+albedo_color = Color(0.72549, 0.027451, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_dxcgp"]
+material = SubResource("StandardMaterial3D_c3jec")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8h22"]
+size = Vector3(0.476318, 3.56152, 0.459229)
+
+[node name="IA" type="Node3D"]
+script = ExtResource("1_tt052")
+
+[node name="base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.050744, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_lm33p")
+
+[node name="delay" type="Timer" parent="."]
+one_shot = true
+
+[node name="dir" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.181891, 0, 1, -7.95072e-09, 0, 0, 1.18011)
+mesh = SubResource("PrismMesh_dxcgp")
+
+[node name="character" type="CharacterBody3D" parent="." groups=["IA"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17879, 0)
+shape = SubResource("BoxShape3D_p8h22")
+
+[node name="jumpscare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rrjgk")
+
+[connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]
+[connection signal="finished" from="jumpscare" to="." method="_on_jumpscare_finished"]

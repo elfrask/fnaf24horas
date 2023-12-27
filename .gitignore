@@ -1,0 +1,6 @@
+game/.godot
+*.import
+res
+dist
+game/assets
+game/assets.zip
