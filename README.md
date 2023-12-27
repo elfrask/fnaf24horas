@@ -6,7 +6,7 @@
 
 Este es un FNAF hecho en 24 horas, si quieres mas informacion al respecto ve a ver mi video que subi a mi canal:
 
-<a href="">
+<a href="https://youtu.be/Wa9JHi730sg">
 	hice un Fnaf en 24 horas | Frask
 </a>
 
