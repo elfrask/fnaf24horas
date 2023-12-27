@@ -10,8 +10,6 @@ Este es un FNAF hecho en 24 horas, si quieres mas informacion al respecto ve a v
 	hice un Fnaf en 24 horas | Frask
 </a>
 
-<hr>
-<br>
 <h1>Otros links:</h1>
 <br>
 <a href="https://github.com/elfrask/fnaf24horas">
